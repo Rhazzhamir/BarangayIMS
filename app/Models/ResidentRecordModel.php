@@ -4,15 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ResidentRecord extends Model
+class ResidentRecordModel extends Model
 {
-    protected $table            = 'residentrecords';
+    protected $table            = 'residents';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'photo', 'full_name', 'date_of_birth', 'age', 'gender', 'civil_status', 'address', 'contact', 'occupation', 'date_registered', 'created_at'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
