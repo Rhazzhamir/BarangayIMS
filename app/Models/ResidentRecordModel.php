@@ -12,8 +12,18 @@ class ResidentRecordModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [
-        'photo', 'full_name', 'date_of_birth', 'age', 'gender', 'civil_status', 'address', 'contact', 'occupation', 'date_registered', 'created_at'
+    protected $allowedFields = [
+        'photo', 
+        'full_name', 
+        'date_of_birth', 
+        'age', 
+        'gender', 
+        'civil_status', 
+        'address', 
+        'contact', 
+        'occupation', 
+        'date_registered',
+        'created_at'
     ];
 
     protected bool $allowEmptyInserts = false;

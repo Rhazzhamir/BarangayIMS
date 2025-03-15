@@ -4,22 +4,33 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ResidentRecordModel;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class ResidentRecordController extends BaseController
 {
     public function index()
     {
-        return view('residentRecord');
+        $fetchResident = new ResidentRecordModel();
+        $data['residents'] = $fetchResident->findAll(); // Fetch all residents
+        
+        // Check if this is a standalone request or should be embedded
+        if ($this->request->getGet('standalone') === 'true') {
+            return view('residentRecord', $data);
+        } else {
+            // Redirect to main page with tab parameter
+            return redirect()->to('/?tab=resident');
+        }
     }
-    public function store(){
+    
+    public function store()
+    {
         $insertResident = new ResidentRecordModel();
-        if($img = $this->request->getFile('residentPhoto')){
-            if($img->isValid() && !$img->hasMoved()){
+        $imageName = null;
+        if ($img = $this->request->getFile('photo')) {
+            if ($img->isValid() && !$img->hasMoved()) {
                 $imageName = $img->getRandomName();
-                $img->move('uploads/' , $imageName);
+                $img->move('uploads/', $imageName);
             }
-        };
+        }
         $data = array(
             'photo'           => $imageName,
             'full_name'       => $this->request->getPost('full_name'),
@@ -33,7 +44,12 @@ class ResidentRecordController extends BaseController
             'date_registered' => $this->request->getPost('date_registered'),
             'created_at'      => date('Y-m-d H:i:s')
         );
-        $insertResident -> insert($data);
-        return redirect()->to('/residentRecord')->with('AddSuccess' , 'Resident Added Successfully!');
+        $insertResident->insert($data);
+        
+        // Use session flash data for the success message
+        session()->setFlashdata('AddSuccess', 'Resident Added Successfully!');
+        
+        // Redirect to main page with tab parameter
+        return redirect()->to('/?tab=resident');
     }
 }

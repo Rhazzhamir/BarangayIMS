@@ -10,7 +10,7 @@
                     aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <form action="<?= base_url('resident/store') ?>" method="post">
+                <form action="<?= base_url('/resident/store') ?>" method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <!-- Resident ID -->
                         <div class="col-md-6 mb-3">
