@@ -7,18 +7,12 @@ use App\Models\ResidentRecordModel;
 
 class ResidentRecordController extends BaseController
 {
-    public function index()
+    public function create()
     {
         $fetchResident = new ResidentRecordModel();
         $data['residents'] = $fetchResident->findAll(); // Fetch all residents
         
-        // Check if this is a standalone request or should be embedded
-        if ($this->request->getGet('standalone') === 'true') {
-            return view('residentRecord', $data);
-        } else {
-            // Redirect to main page with tab parameter
-            return redirect()->to('/?tab=resident');
-        }
+        return view('residentRecord' , $data);
     }
     
     public function store()
@@ -47,9 +41,8 @@ class ResidentRecordController extends BaseController
         $insertResident->insert($data);
         
         // Use session flash data for the success message
-        session()->setFlashdata('AddSuccess', 'Resident Added Successfully!');
         
         // Redirect to main page with tab parameter
-        return redirect()->to('/?tab=resident');
+        return redirect()->to(base_url('resident/create'))->with('AddSuccess' , 'Resident Added Successfully!');
     }
 }

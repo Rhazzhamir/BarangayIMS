@@ -8,5 +8,5 @@ use CodeIgniter\Router\RouteCollection;
 // Routes
 $routes->get('/', 'Home::index');
 
-$routes->get('/resident', 'ResidentRecordController::index');
+$routes->get('/resident/create', 'ResidentRecordController::create');
 $routes->post('/resident/store', 'ResidentRecordController::store');

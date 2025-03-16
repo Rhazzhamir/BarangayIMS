@@ -185,15 +185,6 @@
                     <!--end::Fullscreen Toggle-->
                     <!--begin::User Menu Dropdown-->
                     <li class="nav-item dropdown user-menu">
-                        <!-- session -->
-                        <?php if(session() ->getFlashdata('AddSuccess')):?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert"
-                            style="position: absolute; top: 20px; right: 20px; z-index: 1050;">
-                            <?= session()->getFlashdata('AddSuccess') ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-
-                        <?php endif?>
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img src="<?= base_url('template/img/profile.png')?>"
                                 class="user-image rounded-circle shadow" alt="User Image" />
@@ -294,9 +285,9 @@
                         </li>
                     </ul>
                     <!--end::Sidebar Menu-->
-                    <!-- </nav>
-        </div> -->
-                    <!--end::Sidebar Wrapper-->
+                </nav>
+            </div>
+            <!--end::Sidebar Wrapper-->
         </aside>
         <!--end::Sidebar-->
         <!--begin::App Main-->
@@ -307,13 +298,14 @@
                     <?= view('dashboard'); ?>
                 </div>
                 <div class="tab-pane fade" id="resident_record_page">
-                    <?= view('residentRecord'); ?>
+                    <iframe src="<?= base_url('resident/create') ?>"width="100%" height="1000px"
+                        style="border: none;" ></iframe>
                 </div>
                 <div class="tab-pane fade" id="budget_page">
-                    <?= view('budget'); ?>
+
                 </div>
                 <div class="tab-pane fade" id="official_page">
-                    <?= view('official'); ?>
+
                 </div>
             </div>
             <!--end::App Content-->
@@ -541,7 +533,7 @@
     const sparkline3 = new ApexCharts(document.querySelector('#sparkline-3'), option_sparkline3);
     sparkline3.render();
     </script>
-    <script src="<?= base_url('template/dist/js/adminlte.min.js') ?>"></script>
+    <!-- <script src="<?= base_url('template/dist/js/adminlte.min.js') ?>"></script> -->
     <!--end::Script-->
 </body>
 <!--end::Body-->

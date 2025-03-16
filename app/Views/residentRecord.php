@@ -9,9 +9,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body class="bg-light">
+<body class="bg-light" >
 
-    <div class="container mt-4">
+    <div class="container mt-4" >
         <!-- session -->
         <?php if(session()->getFlashdata('AddSuccess')): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -21,7 +21,7 @@
         <?php endif; ?>
 
         <!-- Search & Filter -->
-        <div class="card shadow-sm p-3 mb-4">
+        <div class="card shadow-sm p-3 mb-4" >
             <div class="row g-3">
                 <div class="col-md-4">
                     <input type="text" class="form-control" placeholder="🔍 Search by Name or ID">
@@ -100,8 +100,10 @@
                                 data-bs-target="#viewResidentModal">
                                 View Resident
                             </button>
-                            <a href="<?= base_url('residents/edit/' . $resident['id']) ?>"
-                                class="btn btn-sm btn-warning text-dark">Edit</a>
+                            <button type="button" class="btn btn-sm btn-info text-dark view-btn" data-bs-toggle="modal"
+                                data-bs-target="#viewResidentModal">
+                                View Resident
+                            </button>
                             <button class="btn btn-sm btn-danger text-dark"
                                 onclick="confirmDelete(<?= $resident['id'] ?>)">Delete</button>
                         </td>
