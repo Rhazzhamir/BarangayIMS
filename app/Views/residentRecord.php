@@ -1,3 +1,4 @@
+<!-- residentRecord -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +27,14 @@
         <?php if(session()->getFlashdata('UpdateSuccess')): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <?= session()->getFlashdata('UpdateSuccess') ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php endif; ?>
+
+        <!-- Delete -->
+        <?php if(session()->getFlashdata('DeleteSuccess')): ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?= session()->getFlashdata('DeleteSuccess') ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         <?php endif; ?>
@@ -63,6 +72,8 @@
         <?= view('components/modal'); ?>
         <?= view('components/viewProfile'); ?>
         <?= view('components/updateModal'); ?>
+        <?= view('components/deleteModal'); ?>
+
 
 
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -110,15 +121,17 @@
                         <td>
                             <button type="button" class="btn btn-sm btn-info text-dark view-btn" data-bs-toggle="modal"
                                 data-bs-target="#viewResidentModal">
-                                View Resident
+                                View
                             </button>
                             <button type="button" class="btn btn-sm btn-warning text-dark view-btn"
                                 data-bs-toggle="modal" data-bs-target="#updateResidentModal">
                                 Update
                             </button>
 
-                            <button class="btn btn-sm btn-danger text-dark"
-                                onclick="confirmDelete(<?= $resident['id'] ?>)">Delete</button>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteResidentModal">
+                                Delete
+                            </button>
+
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -287,6 +300,119 @@
                 } catch (e) {
                     console.error("Error setting date:", e);
                 }
+            });
+        });
+    });
+    </script>
+    <!-- UPdateMOdal -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all update buttons with class btn-warning
+        const updateButtons = document.querySelectorAll('.btn-warning');
+
+        // Add click event listener to each button
+        updateButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Only proceed if this is the Update button (not Delete or other buttons)
+                if (this.textContent.trim() === 'Update' || this.innerHTML.includes('Update')) {
+                    // Get the parent row
+                    const row = this.closest('tr');
+
+                    // Extract data from the row
+                    const id = row.cells[1].textContent.trim();
+                    const fullName = row.cells[2].textContent.trim();
+                    const age = row.cells[3].textContent.trim();
+                    const gender = row.cells[4].textContent.trim();
+                    const address = row.cells[5].textContent.trim();
+                    const contact = row.cells[6].textContent.trim();
+                    const civilStatus = row.cells[7].textContent.trim();
+                    const occupation = row.cells[8].textContent.trim();
+                    const dateRegistered = row.cells[9].textContent.trim();
+
+                    console.log("Updating resident:", fullName); // Debug
+
+                    // Update the form action to include the ID
+                    const form = document.getElementById('updateResidentForm');
+                    form.action = '<?= base_url('/resident/update/') ?>' + id;
+
+                    // Fill the update form
+                    document.getElementById('residentId').value = id;
+                    document.getElementById('fullName').value = fullName;
+                    document.getElementById('age').value = age;
+
+                    // We need to calculate an approximate birthdate based on age
+                    // This is just an estimate since we don't have the actual birth date
+                    const birthYear = new Date().getFullYear() - parseInt(age);
+                    const estimatedBirthdate = birthYear + '-01-01'; // Default to January 1st
+                    document.getElementById('dob').value = estimatedBirthdate;
+
+                    // Set gender dropdown
+                    const genderSelect = document.getElementById('gender');
+                    for (let i = 0; i < genderSelect.options.length; i++) {
+                        if (genderSelect.options[i].value === gender) {
+                            genderSelect.selectedIndex = i;
+                            break;
+                        }
+                    }
+
+                    // Set civil status dropdown
+                    const civilStatusSelect = document.getElementById('civilStatus');
+                    for (let i = 0; i < civilStatusSelect.options.length; i++) {
+                        if (civilStatusSelect.options[i].value === civilStatus) {
+                            civilStatusSelect.selectedIndex = i;
+                            break;
+                        }
+                    }
+
+                    document.getElementById('address').value = address;
+                    document.getElementById('contact').value = contact;
+                    document.getElementById('occupation').value = occupation;
+
+                    // Parse the date to ensure correct format (YYYY-MM-DD)
+                    try {
+                        // Try different date formats
+                        let formattedDate;
+                        if (dateRegistered.includes('/')) {
+                            // If date is in MM/DD/YYYY format
+                            const dateParts = dateRegistered.split('/');
+                            formattedDate =
+                                `${dateParts[2]}-${dateParts[0].padStart(2, '0')}-${dateParts[1].padStart(2, '0')}`;
+                        } else if (dateRegistered.includes('-')) {
+                            // If already in YYYY-MM-DD format
+                            formattedDate = dateRegistered;
+                        } else {
+                            // Try to parse as date object
+                            const dateObj = new Date(dateRegistered);
+                            formattedDate = dateObj.toISOString().split('T')[0];
+                        }
+                        document.getElementById('dateRegistered').value = formattedDate;
+                    } catch (e) {
+                        console.error("Error setting date:", e);
+                        // Fallback to today's date
+                        document.getElementById('dateRegistered').value = new Date()
+                            .toISOString().split('T')[0];
+                    }
+                }
+            });
+        });
+    });
+    </script>
+    <!-- Update -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteButtons = document.querySelectorAll('.btn-danger');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const residentId = row.cells[1].textContent.trim(); // Get ID from table
+
+                // Update form action dynamically
+                document.getElementById('deleteResidentForm').action =
+                    "<?= base_url('resident/delete/') ?>" + residentId;
+
+                // Set hidden input value
+                document.getElementById('deleteResidentId').value = residentId;
             });
         });
     });

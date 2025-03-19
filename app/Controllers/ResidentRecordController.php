@@ -1,4 +1,5 @@
 <?php
+// ResidentREcord.php
 
 namespace App\Controllers;
 
@@ -14,7 +15,6 @@ class ResidentRecordController extends BaseController
         $data['resident'] = [];
         return view('residentRecord' , $data);
     }
-    
     public function store()
     {
         $insertResident = new ResidentRecordModel();
@@ -39,46 +39,25 @@ class ResidentRecordController extends BaseController
             'created_at'      => date('Y-m-d H:i:s')
         );
         $insertResident->insert($data);
-        
-        // Use session flash data for the success message
-        
-        // Redirect to main page with tab parameter
         return redirect()->to(base_url('resident/create'))->with('AddSuccess' , 'Resident Added Successfully!');
     }
     public function EditResident($id){
-        $fetchData = new ResidentRecordModel();
-        $data['resident'] = $fetchData->find($id);
-        $data['residents'] = $fetchData->findAll(); // Keep the list of residents for the main view
-    
-    return view('residentRecord', $data); // Create a separate edit view
+        $fetchResident = new ResidentRecordModel();
+        $data['residents'] = $fetchResident->where('id' , $id)->first();
+        return view('residentRecord' , $data);
+        
     }
-    public function UpdateResident()
+    public function UpdateResident($id)
 {
     $updateResident = new ResidentRecordModel();
-    $id = $this->request->getPost('resident_id');
-    
-    // Handle image upload if a new image is provided
+    $imageName = null;
     if ($img = $this->request->getFile('photo')) {
         if ($img->isValid() && !$img->hasMoved()) {
-            // Get the old image first to delete it later
-            $oldData = $updateResident->find($id);
-            $oldImage = $oldData['photo'] ?? null;
-            
-            // Upload new image
             $imageName = $img->getRandomName();
             $img->move('uploads/', $imageName);
-            
-            // Delete the old image if it exists
-            if ($oldImage && file_exists('uploads/' . $oldImage)) {
-                unlink('uploads/' . $oldImage);
-            }
-            
-            // Set the image name to be included in the update data
-            $imageToUpdate = $imageName;
+            $data['photo'] = $imageName;
         }
     }
-    
-    // Prepare data for update
     $data = [
         'full_name'       => $this->request->getPost('full_name'),
         'date_of_birth'   => $this->request->getPost('date_of_birth'),
@@ -92,15 +71,26 @@ class ResidentRecordController extends BaseController
         'updated_at'      => date('Y-m-d H:i:s')
     ];
     
-    // Only include the photo in the update if a new one was uploaded
-    if (isset($imageToUpdate)) {
-        $data['photo'] = $imageToUpdate;
+    if (!$imageName) {
+        unset($data['photo']);
     }
-    
-    // Update the record
     $updateResident->update($id, $data);
-    
-    // Redirect with success message
     return redirect()->to(base_url('resident/create'))->with('UpdateSuccess', 'Resident Updated Successfully!');
 }
+public function DeleteResident($id)
+{
+    $deleteResident = new ResidentRecordModel();
+    
+    // Check if resident exists
+    $resident = $deleteResident->find($id);
+    
+    if (!$resident) {
+        return redirect()->to(base_url('resident/create'))->with('error', 'Resident not found!');
+    }
+    
+    $deleteResident->delete($id);
+    
+    return redirect()->to(base_url('resident/create'))->with('DeleteSuccess', 'Resident Deleted Successfully!');
+}
+
 }
