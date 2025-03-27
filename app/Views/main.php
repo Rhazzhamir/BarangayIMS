@@ -215,7 +215,7 @@
                             <!--begin::Menu Footer-->
                             <li class="user-footer">
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+                                <a href="<?= base_url('/Login'); ?>" class="btn btn-default btn-flat float-end">Sign out</a>
                             </li>
                             <!--end::Menu Footer-->
                         </ul>
@@ -533,7 +533,7 @@
     const sparkline3 = new ApexCharts(document.querySelector('#sparkline-3'), option_sparkline3);
     sparkline3.render();
     </script>
-    <!-- <script src="<?= base_url('template/dist/js/adminlte.min.js') ?>"></script> -->
+    <script src="<?= base_url('template/dist/js/adminlte.min.js') ?>"></script>
     <!--end::Script-->
 </body>
 <!--end::Body-->

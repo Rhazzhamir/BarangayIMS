@@ -80,16 +80,11 @@ class ResidentRecordController extends BaseController
 public function DeleteResident($id)
 {
     $deleteResident = new ResidentRecordModel();
-    
-    // Check if resident exists
     $resident = $deleteResident->find($id);
-    
     if (!$resident) {
         return redirect()->to(base_url('resident/create'))->with('error', 'Resident not found!');
-    }
-    
+    }    
     $deleteResident->delete($id);
-    
     return redirect()->to(base_url('resident/create'))->with('DeleteSuccess', 'Resident Deleted Successfully!');
 }
 
