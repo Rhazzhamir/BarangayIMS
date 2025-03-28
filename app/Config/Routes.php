@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\OfficialController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -7,6 +8,8 @@ use CodeIgniter\Router\RouteCollection;
  */
 // Routes
 
+// Lockscreen
+$routes->get('/' , 'LockscreenController::create');
 // Homepage
 $routes->get('/Homepage' , 'HomepageController::Homepage');
 
@@ -26,3 +29,10 @@ $routes->post('/resident/update/(:num)', 'ResidentRecordController::UpdateReside
 
 $routes->post('resident/delete/(:num)', 'ResidentRecordController::DeleteResident/$1');
 
+
+// Budget
+$routes->get('/Budget' , 'BudgetController::create');
+
+
+//Official
+$routes->get('/Officials' , 'OfficialController::create');

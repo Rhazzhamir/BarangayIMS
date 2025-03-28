@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body class="bg-light">
+<body>
 
     <div class="container mt-4">
         <!-- session -->
@@ -77,7 +77,7 @@
 
 
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3 class="fw-bold text-light">Residents List</h3>
+            <h3 class="fw-bold text-dark">Residents List</h3>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addResidentModal">
                 + Add Resident
             </button>

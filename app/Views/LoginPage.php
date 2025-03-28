@@ -93,6 +93,12 @@
                         <div class="text-center">
                             <p class="text-muted">Don't have an account? <a href="<?= base_url('/Register'); ?>" class="text-primary">Register here</a></p>
                         </div>
+                        <div class="text-center">
+                            <p class="text-muted"><a href="<?= base_url('/'); ?>" class="text-primary">ADMIN</a></p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-muted">Go to <a href="<?= base_url('/Homepage'); ?>" class="text-primary">Homepage</a></p>
+                        </div>
                     </form>
                 </div>
             </div>
