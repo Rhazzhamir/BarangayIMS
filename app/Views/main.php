@@ -119,17 +119,13 @@
         <!--begin::Sidebar-->
         <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
             <!--begin::Sidebar Brand-->
-            <div class="sidebar-brand" style="background-color: rgba(6,62,75,255);">
-                <!--begin::Brand Link-->
-                <a href="./index.html" class="brand-link">
-                    <!--begin::Brand Image-->
-                    <!--end::Brand Image-->
-                    <!--begin::Brand Text-->
-                    <span class="brand-text fw-light ms-0">District IV</span>
-                    <!--end::Brand Text-->
+            <div class="sidebar-brand d-flex justify-content-center align-items-center"
+                style="background-color: rgba(6,62,75,255); height: 100px;">
+                <a href="#" class="brand-link d-flex justify-content-center align-items-center">
+                    <img src="<?= base_url('src/Sidebar_logo.png') ?>" class="w-75 h-75" alt="Sidebar Logo">
                 </a>
-                <!--end::Brand Link-->
             </div>
+
             <!--end::Sidebar Brand-->
             <!--begin::Sidebar Wrapper-->
             <div class="sidebar-wrapper" style="background-color: rgba(6,62,75,255);">

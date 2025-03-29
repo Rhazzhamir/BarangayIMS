@@ -74,9 +74,10 @@
                 <!--begin::Small Box Widget 3-->
                 <div class="small-box text-bg-warning">
                     <div class="inner">
-                        <h3>1354</h3>
-                        <p>Resident record</p>
+                        <h3><?= esc($residentCount) ?></h3>
+                        <p>Resident record<p>
                     </div>
+
                     <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path
@@ -121,39 +122,6 @@
 
         <!-- /.row (main row) -->
     </div>
-    <div class="col-lg-5 mt-5 me-5 ms-3 connectedSortable">
-        <div class="card text-white bg-primary bg-gradient border-primary mb-4">
-            <div class="card-header border-0">
-                <h3 class="card-title">Sales Value</h3>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-primary btn-sm" data-lte-toggle="card-collapse">
-                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
-                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="card-body">
-                <div id="world-map" style="height: 220px"></div>
-            </div>
-            <div class="card-footer border-0">
-                <!--begin::Row-->
-                <div class="row">
-                    <div class="col-4 text-center">
-                        <div id="sparkline-1" class="text-dark"></div>
-                        <div class="text-white">Visitors</div>
-                    </div>
-                    <div class="col-4 text-center">
-                        <div id="sparkline-2" class="text-dark"></div>
-                        <div class="text-white">Online</div>
-                    </div>
-                    <div class="col-4 text-center">
-                        <div id="sparkline-3" class="text-dark"></div>
-                        <div class="text-white">Sales</div>
-                    </div>
-                </div>
-                <!--end::Row-->
-            </div>
-        </div>
-    </div>
+
     <!--end::Container-->
 </div>

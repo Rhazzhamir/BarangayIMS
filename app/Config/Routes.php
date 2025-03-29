@@ -18,10 +18,13 @@ $routes->get('/Login' , 'Login_RegisterController::Login' );
 $routes->get('/Register' , 'Login_RegisterController::Register');
 
 // AdminDashboard
-$routes->get('/Admin/Dashboard', 'AdminDashboard::index');
+$routes->get('/Admin/Dashboard', 'AdminDashboard::index'); 
+$routes->get('/Admin/Dashboard/countResident', 'AdminDashboard::countResident');
+
 
 // ResidentDashboard
 $routes->get('/resident/create', 'ResidentRecordController::create');
+
 $routes->post('/resident/store', 'ResidentRecordController::store');
 
 $routes->get('/resident/edit/(:num)' , 'ResidentRecordController::EditResident/$1');
