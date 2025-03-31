@@ -187,7 +187,7 @@
                     </iframe>
                 </div>
                 <div class="tab-pane fade" id="budget_page">
-                    <iframe src="<?= base_url('Budget') ?>" width="100%" height="1000px" style="border: none;">
+                    <iframe src="<?= base_url('Budget/create') ?>" width="100%" height="1000px" style="border: none;">
                     </iframe>
                 </div>
                 <div class="tab-pane fade" id="official_page">

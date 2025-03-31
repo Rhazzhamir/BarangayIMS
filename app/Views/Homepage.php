@@ -134,10 +134,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Modules</a>
+                        <a class="nav-link text-white" href="#map">Map</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="<?= base_url('Login'); ?>">Login</a>
@@ -156,7 +153,6 @@
         <div class="container">
             <h1 class="display-4 mt-5">Barangay Information Management System</h1>
             <p class="lead">Efficient Management of Barangay Records and Resources</p>
-            <a href="<?= base_url('/Login'); ?>" class="btn btn-warning btn-lg mt-3">Get Started</a>
         </div>
     </div>
 
@@ -322,7 +318,7 @@
 
 
     <!-- Container for HD Map -->
-    <div class="container mt-5">
+    <div class="container mt-5" id="map">
         <div class="card text-white border-0 shadow-lg" style="background-color: #343a40;">
             <div class="p-3 card-header border-0 d-flex justify-content-center align-items-center text-center">
                 <h3 class="card-title mb-0">Barangay Map - Babatngon District 4</h3>
@@ -371,7 +367,7 @@
     var barangayImage = "src/barangay-district-4.jpg"; // Siguraduhin na may tamang path ang image
 
     // Place the red marker at Barangay District 4
-    var marker = L.marker([11.4244, 124.8469], {
+    var marker = L.marker([11.4238, 124.8473], {
         icon: redIcon
     }).addTo(map);
 

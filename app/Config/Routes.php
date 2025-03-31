@@ -34,7 +34,8 @@ $routes->post('resident/delete/(:num)', 'ResidentRecordController::DeleteResiden
 
 
 // Budget
-$routes->get('/Budget' , 'BudgetController::create');
+$routes->get('/Budget/create' , 'BudgetController::create');
+$routes->post('/Budget/store' , 'BudgetController::store');
 
 
 //Official
