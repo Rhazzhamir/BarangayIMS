@@ -44,40 +44,53 @@
                 </a>
             </div>
         </nav>
-
+        
         <div class="container">
+            <!-- alert -->
+            <?php if(session()->getFlashdata('AddSuccess')): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?= session()->getFlashdata('AddSuccess') ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php endif; ?>
             <!-- Budget Summary -->
+            <!-- Put here the data from the form budget  -->
             <div class="row g-4 mb-4">
-                <?php if (!empty($budgets))?>
-
-                    <div class="col-md-4">
-                        <div class="card budget-summary-card border-0 bg-primary text-white">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Total Budget</h5>
-                                <h2 class="display-6 fw-bold">₱500,000</h2>
-                                <small>Annual Allocation</small>
-                            </div>
+                <div class="col-md-4">
+                    <div class="card budget-summary-card border-0 bg-primary text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Total Budget</h5>
+                            <?php if(!empty($budget)):?>
+                            <?php foreach($budget as $budgets)?>
+                            <h2 class="display-6 fw-bold">₱<?= $budgets['total_budget']?></h2>
+                            <?php endif;?>
+                            <small>Annual Allocation</small>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card budget-summary-card border-0 bg-success text-white">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Total Spent</h5>
-                                <h2 class="display-6 fw-bold">₱275,000</h2>
-                                <small>Current Expenditure</small>
-                            </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card budget-summary-card border-0 bg-success text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Total Spent</h5>
+                            <?php if(!empty($budget)):?>
+                            <?php foreach($budget as $budgets)?>
+                            <h2 class="display-6 fw-bold">₱<?= $budgets['total_spent'];?></h2 <?php endif;?> <small>
+                            Current Expenditure</small>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card budget-summary-card border-0 bg-warning text-dark">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Remaining Budget</h5>
-                                <h2 class="display-6 fw-bold">₱225,000</h2>
-                                <small>Available Funds</small>
-                            </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card budget-summary-card border-0 bg-warning text-dark">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Remaining Budget</h5>
+                            <?php if(!empty($budget)):?>
+                            <?php foreach($budget as $budgets)?>
+                            <h2 class="display-6 fw-bold">₱<?= $budgets['remaining_budget'];?></h2>
+                            <?php endif;?>
+                            <small>Available Funds</small>
                         </div>
                     </div>
-                <?php endif; ?>
+                </div>
             </div>
 
             <!-- Budget Breakdown & Budget Information -->
@@ -127,18 +140,22 @@
                             <h4 class="mb-0">Budget Information</h4>
                         </div>
                         <div class="card-body">
-                            <form action="<?= base_url('Budget/store')?>" method="POST" >
+                            <form action="<?= base_url('Budget/store')?>" method="POST">
                                 <div class="mb-3">
                                     <label for="inputEstimatedBudget">Estimated Budget</label>
-                                    <input type="number" id="inputEstimatedBudget" name="total_budget" class="form-control" value="500000">
+                                    <?php foreach($budgets as $budget)?>
+                                    <input type="number" id="inputEstimatedBudget" name="total_budget"
+                                        class="form-control" value="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="inputSpentBudget">Total Amount Spent</label>
-                                    <input type="number" id="inputSpentBudget" name="total_spent" class="form-control" value="275000">
+                                    <input type="number" id="inputSpentBudget" name="total_spent" class="form-control"
+                                        value="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="inputEstimatedDuration">Remaining Budget</label>
-                                    <input type="number" id="inputEstimatedDuration" name="remaining_budget" class="form-control" value="12">
+                                    <input type="number" id="inputEstimatedDuration" name="remaining_budget"
+                                        class="form-control" value="">
                                 </div>
                                 <div class="text-end mt-2 p-3">
                                     <button type="submit" class="btn btn-success w-100">Save</button>

@@ -13,7 +13,6 @@ class BudgetController extends BaseController
     {
         $fecthBudget = new BudgetModel();
         $data['budget'] = $fecthBudget->findAll();
-        $data['budgets'] = [];
         return view('budget' , $data);
     }
     public function store()
@@ -27,6 +26,6 @@ class BudgetController extends BaseController
             'update_at'=> date('Y-m-d H:i:s'),
         );
         $insertBudget->insert($data);
-        return redirect()->to(base_url('Budget/create'))->with('AddSuccess' , 'Resident Added Successfully!');
+        return redirect()->to(base_url('Budget/create'))->with('AddSuccess' , 'Budget Added Successfully!');
     }
 }

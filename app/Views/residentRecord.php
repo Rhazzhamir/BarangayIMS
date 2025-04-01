@@ -103,42 +103,42 @@
                 </thead>
                 <tbody>
                     <?php if(!empty($residents)): ?>
-                    <?php foreach($residents as $resident): ?>
-                    <tr>
-                        <td>
-                            <img src="<?= base_url('uploads/' . ($resident['photo'] ?? 'template/img/default-avatar.png')) ?>"
-                                class="rounded-circle" width="50" height="50" alt="Resident">
-                        </td>
-                        <td><?= $resident['id'] ?></td>
-                        <td><?= $resident['full_name'] ?></td>
-                        <td><?= $resident['age'] ?></td>
-                        <td><?= $resident['gender'] ?></td>
-                        <td><?= $resident['address'] ?></td>
-                        <td><?= $resident['contact'] ?></td>
-                        <td><?= $resident['civil_status'] ?></td>
-                        <td><?= $resident['occupation'] ?></td>
-                        <td><?= $resident['date_registered'] ?></td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-info text-dark view-btn" data-bs-toggle="modal"
-                                data-bs-target="#viewResidentModal">
-                                View
-                            </button>
-                            <button type="button" class="btn btn-sm btn-warning text-dark view-btn"
-                                data-bs-toggle="modal" data-bs-target="#updateResidentModal">
-                                Update
-                            </button>
+                        <?php foreach($residents as $resident): ?>
+                        <tr>
+                            <td>
+                                <img src="<?= base_url('uploads/' . ($resident['photo'] ?? 'template/img/default-avatar.png')) ?>"
+                                    class="rounded-circle" width="50" height="50" alt="Resident">
+                            </td>
+                            <td><?= $resident['id'] ?></td>
+                            <td><?= $resident['full_name'] ?></td>
+                            <td><?= $resident['age'] ?></td>
+                            <td><?= $resident['gender'] ?></td>
+                            <td><?= $resident['address'] ?></td>
+                            <td><?= $resident['contact'] ?></td>
+                            <td><?= $resident['civil_status'] ?></td>
+                            <td><?= $resident['occupation'] ?></td>
+                            <td><?= $resident['date_registered'] ?></td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-info text-dark view-btn" data-bs-toggle="modal"
+                                    data-bs-target="#viewResidentModal">
+                                    View
+                                </button>
+                                <button type="button" class="btn btn-sm btn-warning text-dark view-btn"
+                                    data-bs-toggle="modal" data-bs-target="#updateResidentModal">
+                                    Update
+                                </button>
 
-                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteResidentModal">
-                                Delete
-                            </button>
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteResidentModal">
+                                    Delete
+                                </button>
 
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                    <?php else: ?>
-                    <tr>
-                        <td colspan="11" class="text-center text-muted">No residents found.</td>
-                    </tr>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                        <?php else: ?>
+                        <tr>
+                            <td colspan="11" class="text-center text-muted">No residents found.</td>
+                        </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
