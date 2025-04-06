@@ -19,6 +19,7 @@ $routes->get('/Register' , 'Login_RegisterController::Register');
 
 // AdminDashboard
 $routes->get('/Admin/Dashboard', 'AdminDashboard::index'); 
+
 $routes->get('/Admin/Dashboard/countResident', 'AdminDashboard::countResident');
 
 
@@ -40,3 +41,4 @@ $routes->post('/Budget/store' , 'BudgetController::store');
 
 //Official
 $routes->get('/Officials' , 'OfficialController::create');
+$routes->post('/officials/store' , 'OfficialController::store');

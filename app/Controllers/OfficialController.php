@@ -11,4 +11,8 @@ class OfficialController extends BaseController
     {
         return view('official');
     }
+    public function store():
+    {
+        return re   
+    }
 }

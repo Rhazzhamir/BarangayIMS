@@ -8,51 +8,51 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+    :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #3498db;
+        --accent-color: #e74c3c;
+        --light-bg: #f8f9fa;
+        --border-radius: 0.5rem;
+    }
+
     body {
-        background-color: #f4f6f9;
+        background-color: #f0f2f5;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    .budget-summary-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .budget-summary-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .card {
-        border-radius: 10px;
-    }
-
-    .footer {
-        background: #fff;
-        padding: 15px;
-        margin-top: 30px;
-        border-top: 2px solid #ddd;
+    .page-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     </style>
 </head>
 
 <body>
     <div class="container-fluid">
-        <!-- Header -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+        <!-- Header Section -->
+        <div class="page-header mt-3">
             <div class="container">
-                <a class="navbar-brand" href="#">
-                    <strong>Budget</strong> Management
-                </a>
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h1><i class="fas fa-users me-2"></i>Barangay Budget Directory</h1>
+                        <p class="lead mb-0">Budget information for transparency and planning</p>
+                    </div>
+                    <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                        <button class="btn btn-light"><i class="fas fa-print me-2"></i>Print Directory</button>
+                    </div>
+                </div>
             </div>
-        </nav>
-        
+        </div>
+
+
         <div class="container">
             <!-- alert -->
-            <?php if(session()->getFlashdata('AddSuccess')): ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <?= session()->getFlashdata('AddSuccess') ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php endif; ?>
+            <?= view('components/Alert/AlertBudget') ?>
             <!-- Budget Summary -->
             <!-- Put here the data from the form budget  -->
             <div class="row g-4 mb-4">

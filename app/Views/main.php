@@ -85,7 +85,7 @@
                                     class="user-image rounded-circle shadow" alt="User Image" />
                                 <p>
                                     Rhazzhamir I. Aguilar
-                                    <small>Member since Nov. 2023</small>
+                                    <small>Admin</small>
                                 </p>
                             </li>
                             <!--end::User Image-->

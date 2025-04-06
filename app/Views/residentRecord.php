@@ -8,72 +8,59 @@
     <title>Resident Records</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+    :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #3498db;
+        --accent-color: #e74c3c;
+        --light-bg: #f8f9fa;
+        --border-radius: 0.5rem;
+    }
+
+    body {
+        background-color: #f0f2f5;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .page-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    </style>
 </head>
 
 <body>
 
-    <div class="container mt-4">
-        <!-- session -->
-        <!-- Add -->
-        <?php if(session()->getFlashdata('AddSuccess')): ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <?= session()->getFlashdata('AddSuccess') ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php endif; ?>
+    <div class="container-fluid p-3">
 
-        <!-- Update -->
-        <!-- In your main view after the AddSuccess message -->
-        <?php if(session()->getFlashdata('UpdateSuccess')): ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <?= session()->getFlashdata('UpdateSuccess') ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php endif; ?>
 
-        <!-- Delete -->
-        <?php if(session()->getFlashdata('DeleteSuccess')): ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <?= session()->getFlashdata('DeleteSuccess') ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php endif; ?>
-
-        <!-- Search & Filter -->
-        <div class="card shadow-sm p-3 mb-4">
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="🔍 Search by Name or ID">
-                </div>
-                <div class="col-md-3">
-                    <select class="form-select">
-                        <option selected>Filter by Gender</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Others</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <select class="form-select">
-                        <option selected>Filter by Civil Status</option>
-                        <option>Single</option>
-                        <option>Married</option>
-                        <option>Widowed</option>
-                        <option>Separated</option>
-                    </select>
-                </div>
-                <div class="col-md-2 d-grid">
-                    <button class="btn btn-success">Filter</button>
+        <div class="page-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h1><i class="fas fa-users "></i>Resident Record Directory</h1>
+                        <p class="lead mb-0">Detailed records of all barangay residents</p>
+                    </div>
+                    <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                        <button class="btn btn-light"><i class="fas fa-print me-2"></i>Print Directory</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Include modals at the start -->
-        <?= view('components/modal'); ?>
-        <?= view('components/viewProfile'); ?>
-        <?= view('components/updateModal'); ?>
-        <?= view('components/deleteModal'); ?>
 
+        <!-- Include modals at the start -->
+        <?= view('components/Modal/Resident/modal'); ?>
+        <?= view('components/Modal/Resident/viewProfile'); ?>
+        <?= view('components/Modal/Resident/updateModal'); ?>
+        <?= view('components/Modal/Resident/deleteModal'); ?>
+
+        <!-- alert -->
+        <?= view('components/Alert/AlertResident') ?>
 
 
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -81,6 +68,7 @@
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addResidentModal">
                 + Add Resident
             </button>
+            
         </div>
 
         <!-- Residents Table -->
@@ -103,42 +91,42 @@
                 </thead>
                 <tbody>
                     <?php if(!empty($residents)): ?>
-                        <?php foreach($residents as $resident): ?>
-                        <tr>
-                            <td>
-                                <img src="<?= base_url('uploads/' . ($resident['photo'] ?? 'template/img/default-avatar.png')) ?>"
-                                    class="rounded-circle" width="50" height="50" alt="Resident">
-                            </td>
-                            <td><?= $resident['id'] ?></td>
-                            <td><?= $resident['full_name'] ?></td>
-                            <td><?= $resident['age'] ?></td>
-                            <td><?= $resident['gender'] ?></td>
-                            <td><?= $resident['address'] ?></td>
-                            <td><?= $resident['contact'] ?></td>
-                            <td><?= $resident['civil_status'] ?></td>
-                            <td><?= $resident['occupation'] ?></td>
-                            <td><?= $resident['date_registered'] ?></td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-info text-dark view-btn" data-bs-toggle="modal"
-                                    data-bs-target="#viewResidentModal">
-                                    View
-                                </button>
-                                <button type="button" class="btn btn-sm btn-warning text-dark view-btn"
-                                    data-bs-toggle="modal" data-bs-target="#updateResidentModal">
-                                    Update
-                                </button>
+                    <?php foreach($residents as $resident): ?>
+                    <tr>
+                        <td>
+                            <img src="<?= base_url('uploads/' . ($resident['photo'] ?? 'template/img/default-avatar.png')) ?>"
+                                class="rounded-circle" width="50" height="50" alt="Resident">
+                        </td>
+                        <td><?= $resident['id'] ?></td>
+                        <td><?= $resident['full_name'] ?></td>
+                        <td><?= $resident['age'] ?></td>
+                        <td><?= $resident['gender'] ?></td>
+                        <td><?= $resident['address'] ?></td>
+                        <td><?= $resident['contact'] ?></td>
+                        <td><?= $resident['civil_status'] ?></td>
+                        <td><?= $resident['occupation'] ?></td>
+                        <td><?= $resident['date_registered'] ?></td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-info text-dark view-btn" data-bs-toggle="modal"
+                                data-bs-target="#viewResidentModal">
+                                View
+                            </button>
+                            <button type="button" class="btn btn-sm btn-warning text-dark view-btn"
+                                data-bs-toggle="modal" data-bs-target="#updateResidentModal">
+                                Update
+                            </button>
 
-                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteResidentModal">
-                                    Delete
-                                </button>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteResidentModal">
+                                Delete
+                            </button>
 
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                        <?php else: ?>
-                        <tr>
-                            <td colspan="11" class="text-center text-muted">No residents found.</td>
-                        </tr>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                    <?php else: ?>
+                    <tr>
+                        <td colspan="11" class="text-center text-muted">No residents found.</td>
+                    </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
