@@ -32,7 +32,7 @@
                 <!--begin::Small Box Widget 1-->
                 <div class="small-box text-bg-primary">
                     <div class="inner">
-                        <h3>308,000</h3>
+                        <h3><?= esc($budgetCount) ?></h3>
                         <p>Budget</p>
                     </div>
                     <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
@@ -75,7 +75,8 @@
                 <div class="small-box text-bg-warning">
                     <div class="inner">
                         <h3><?= esc($residentCount) ?></h3>
-                        <p>Resident record<p>
+                        <p>Resident record
+                        <p>
                     </div>
 
                     <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"

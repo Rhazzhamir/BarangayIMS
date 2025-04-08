@@ -93,16 +93,16 @@
                             <li class="user-body">
                                 <!--begin::Row-->
                                 <div class="row">
-                                    <div class="col-4 text-center"><a href="#">Followers</a></div>
+                                    <!-- <div class="col-4 text-center"><a href="#">Followers</a></div>
                                     <div class="col-4 text-center"><a href="#">Sales</a></div>
-                                    <div class="col-4 text-center"><a href="#">Friends</a></div>
+                                    <div class="col-4 text-center"><a href="#">Friends</a></div> -->
                                 </div>
                                 <!--end::Row-->
                             </li>
                             <!--end::Menu Body-->
                             <!--begin::Menu Footer-->
                             <li class="user-footer">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="" class="btn btn-default btn-flat">Profile</a>
                                 <a href="<?= base_url('/'); ?>" class="btn btn-default btn-flat float-end">Sign
                                     out</a>
                             </li>

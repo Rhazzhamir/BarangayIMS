@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\ResidentRecordModel;
+use App\Models\BudgetModel;
 class AdminDashboard extends BaseController
 {
     public function index()
@@ -13,6 +14,9 @@ class AdminDashboard extends BaseController
 
         $data['residentCount'] = $residentModel->countAll(); 
 
+        $BudegetModel = new BudgetModel();
+        $data['budgetCount'] = $BudegetModel->countAll();
+        
         $data['activeTab'] = $activeTab ?: 'dashboard';
         
         return view('main', $data);

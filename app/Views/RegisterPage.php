@@ -116,14 +116,6 @@
                                 placeholder="Repeat password" required>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="userRole" class="form-label">User Role</label>
-                        <select class="form-select" id="userRole" required>
-                            <option value="">Select User Role</option>
-                            <option value="resident">Resident</option>
-                            <option value="barangay-official">Barangay Official</option>
-                        </select>
-                    </div>
                     <div class="d-grid mb-3">
                         <button type="submit" class="btn btn-primary">Create Account</button>
                     </div>

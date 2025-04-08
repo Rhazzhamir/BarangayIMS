@@ -51,21 +51,20 @@
             <div class="d-flex align-items-center justify-content-center">
                 <input type="password" class="form-control text-center password-input" placeholder="Enter your password"
                     style="max-width: 250px; border-radius: 30px;">
-                    <button type="submit" class="btn btn-primary rounded-circle ms-2"
-                    style="width: 50px; height: 50px;">
-                    <!-- anchor tag temporary la  -->
-                        <a href="/Admin/Dashboard">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </button>
+                    <a href="/Admin/Dashboard">
+                        <button type="submit" class="btn btn-primary rounded-circle ms-2"
+                        style="width: 50px; height: 50px;">
+                        <!-- anchor tag temporary la  -->
+                                <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </a>
             </div>
         </form>
         <p class="mt-3 text-muted">Secure access to manage barangay records</p>
         <a href="/Login" class="text-primary text-decoration-none">Switch user</a>
         <!-- Footer -->
         <footer class="mt-4 text-muted small">
-            <p>Barangay Information Management System</p>
-            <p>© 2024 Local Government Management Platform</p>
+            <p><b> © 2024 Local Government Management Platform </b></p>
         </footer>
     </div>
     <!-- Bootstrap & FontAwesome -->

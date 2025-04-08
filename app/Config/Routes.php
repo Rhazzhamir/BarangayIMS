@@ -42,3 +42,8 @@ $routes->post('/Budget/store' , 'BudgetController::store');
 //Official
 $routes->get('/Officials' , 'OfficialController::create');
 $routes->post('/officials/store' , 'OfficialController::store');
+
+
+
+//User
+$routes->get('/UserDashboard' , 'UserDashboardController::index');
